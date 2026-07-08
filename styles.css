@@ -1,0 +1,544 @@
+body {
+    margin: 0;
+}
+
+/* HERO WRAPPER */
+.hero-wrapper {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-wrapper-gallery {
+    position: relative;
+    height: 75vh;
+    overflow: hidden;
+}
+
+/* NAVBAR OVER HERO */
+.apple-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1050;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+}
+
+/* HERO FULL SCREEN */
+#carouselExampleDark,
+.carousel-inner,
+.carousel-item {
+    height: 100vh;
+}
+
+/* IMAGE FIX */
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* DARK OVERLAY */
+.carousel-item {
+    position: relative;
+}
+
+.carousel-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+    pointer-events: none;
+    /* Let clicks pass through to controls */
+}
+
+/* HERO TEXT */
+.hero-text {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(40px);
+    text-align: center;
+    color: white;
+    width: 100%;
+    max-width: 900px;
+    pointer-events: none;
+    opacity: 0;
+
+    transition: all 0.8s ease;
+    /* Don't block carousel controls */
+}
+
+.hero-text.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+}
+
+/* Re-enable clicks on buttons/links inside hero text */
+.hero-text a,
+.hero-text button {
+    pointer-events: auto;
+}
+
+/* Ensure prev/next buttons sit above the overlay */
+.carousel-control-prev,
+.carousel-control-next {
+    z-index: 10;
+}
+
+.carousel-indicators {
+    z-index: 10;
+}
+
+/* TEXT STYLE */
+.hero-text h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+}
+
+.hero-text p {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+}
+
+/* Make hamburger menu white */
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* NAV LINK BASE STYLE */
+.apple-navbar .nav-link {
+    color: white !important;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+}
+
+/* APPLE STYLE HOVER EFFECT */
+.apple-navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+/* HOVER ANIMATION */
+.apple-navbar .nav-link:hover {
+    transform: translateY(-2px);
+}
+
+.apple-navbar .nav-link:hover::after {
+    width: 70%;
+}
+
+/* ACTIVE NAV LINK UNDERLINE */
+.apple-navbar .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 70%;
+    height: 2px;
+    background: white;
+    transform: translateX(-50%);
+}
+
+/* Active link color */
+.apple-navbar .nav-link.active {
+    color: white !important;
+}
+
+/* HOTEL NAME STYLE */
+.hotel-name {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 10px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.hotel-name:hover {
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* LOGO IMAGE SIZE */
+.logo img {
+    height: 40px;
+    width: auto;
+    max-width: 40px;
+    object-fit: contain;
+}
+
+/* ── MOBILE MENU FIX ── */
+
+/* When collapsed (mobile): full-width dark panel, items stacked */
+@media (max-width: 991px) {
+    #navbarNav {
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(12px);
+        border-radius: 0 0 12px 12px;
+        padding: 12px 16px 16px;
+        margin-top: 8px;
+    }
+
+    /* Give each link a proper tap target */
+    #navbarNav .nav-link {
+        padding: 10px 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    #navbarNav .nav-link:last-of-type {
+        border-bottom: none;
+    }
+
+    /* Book Now button: full width on mobile */
+    .nav-right {
+        margin-top: 12px;
+        width: 100%;
+    }
+
+    .nav-right .btn {
+        width: 100%;
+    }
+}
+
+/* Desktop: center links, push button right */
+@media (min-width: 992px) {
+    #navbarNav {
+        display: flex !important;
+        align-items: center;
+    }
+
+    .nav-center {
+        margin: 0 auto;
+        gap: 20px;
+    }
+
+    .nav-right {
+        margin-left: auto;
+    }
+}
+
+/* CHECK-IN / CHECK-OUT BAR */
+.check-in-out {
+    background: rgba(25, 255, 240, 0.08);
+}
+
+.check-in-price {
+    background-color: rgba(0, 37, 0, 0.829);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.1);
+    /* zoom level */
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.25);
+}
+
+.offer-section {
+    background: #f5f5f7;
+}
+
+.feature-card {
+    background: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    height: 100%;
+    transition: 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.icon-box {
+    font-size: 28px;
+    color: #d4a017;
+    /* gold color */
+    margin-bottom: 10px;
+}
+
+.feature-title {
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.feature-text {
+    color: #666;
+    font-size: 14px;
+}
+
+.bottom-hero {
+    background: url('https://images.unsplash.com/photo-1455587734955-081b22074882?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+    height: 500px;
+    position: relative;
+}
+
+.bottom-hero2 {
+    background: url('https://images.unsplash.com/photo-1568084680786-a84f91d1153c?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+    height: 500px;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* 50% black overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+    .hero-text .d-flex {
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    .hero-text .btn {
+        width: auto !important;
+        display: inline-block;
+    }
+}
+
+/* room */
+.dropdown-menu {
+    z-index: 9999;
+}
+
+.bottom-border {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-view {
+    border: 2px solid #ffc107;
+    padding: 10px;
+    background: none;
+    cursor: pointer;
+}
+
+.btn-view:hover {
+    background-color: #ffc107;
+}
+
+.brown-txt {
+    color: #666;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+/* Section */
+
+.gallery-section {
+    padding: 70px 0;
+}
+
+/* Filter Buttons */
+
+.filter-btns {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    padding: 18px 20px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #555;
+    text-transform: uppercase;
+    transition: .3s;
+    position: relative;
+}
+
+.filter-btn:hover {
+    color: #9b7a21;
+}
+
+.filter-btn.active {
+    color: #9b7a21;
+}
+
+.filter-btn.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -1px;
+    width: 55px;
+    height: 3px;
+    background: #9b7a21;
+}
+
+/* Gallery */
+
+.gallery-item {
+    overflow: hidden;
+    transition: .4s;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+/* Animation */
+
+.hide {
+    display: none !important;
+}
+
+.fade-in {
+    animation: fade .5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width:768px) {
+
+    .filter-btn {
+        font-size: 16px;
+        padding: 15px 10px;
+    }
+
+    .gallery-item img {
+        height: 300px;
+    }
+
+}
+
+.card {
+    width: 100%;
+    /* Let Bootstrap control the width */
+}
+
+.team-img {
+    width: 100%;
+    height: 250px;
+    /* Same height for every image */
+    object-fit: cover;
+    /* Crop to fill without distortion */
+}
+
+/* Optional */
+.card-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+}
+
+.card-text {
+    letter-spacing: 2px;
+    font-size: .95rem;
+}
+
+/* Heading */
+h1 {
+    font-family: "Cormorant Garamond", serif;
+}
+
+/* Remove Bootstrap background */
+.accordion-button {
+    background: transparent;
+    box-shadow: none !important;
+    font-weight: 500;
+    color: #222;
+}
+
+.accordion-button:not(.collapsed) {
+    background: transparent;
+    color: #222;
+}
+
+/* Rotate arrow */
+.accordion-button::after {
+    transition: .3s;
+}
+
+.accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg);
+}
+
+/* Divider lines */
+.accordion-item {
+    border: none;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.accordion-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
